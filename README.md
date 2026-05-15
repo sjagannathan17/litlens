@@ -6,7 +6,7 @@
 
 ---
 
-## 🎯 The Problem
+## The Problem
 
 A literature review is the most time-consuming, least intellectually satisfying part of academic research. PhD students and researchers report spending **40–80 hours per review**, and the work breaks down into a few specific pains:
 
@@ -20,7 +20,7 @@ A literature review is the most time-consuming, least intellectually satisfying 
 
 ---
 
-## 👥 Users & Jobs-to-be-Done
+## Users & Jobs-to-be-Done
 
 | User | Job-to-be-Done | Today's Workaround | Pain |
 |------|----------------|--------------------|------|
@@ -30,13 +30,13 @@ A literature review is the most time-consuming, least intellectually satisfying 
 
 ---
 
-## 💡 The Solution
+## The Solution
 
 A web app where users upload PDFs + a research question and get back **6 tabs of analysis** (Overview · Contradictions · Methodology · Evidence · Gaps · Literature Review) plus a **RAG chat** for follow-ups. Behind the UI is a LangGraph pipeline of 8 specialized agents running in parallel where possible.
 
 ```mermaid
 flowchart LR
-    Upload[📄 PDF Upload] --> Extract[Text Extraction]
+    Upload[ PDF Upload] --> Extract[Text Extraction]
     Extract --> FAISS[(FAISS Index)]
     FAISS --> A1[Agent 1: Ingestion<br/>12 parallel threads]
     A1 --> A2[Agent 2: Claim Extraction]
@@ -58,7 +58,7 @@ flowchart LR
 
 ---
 
-## 📊 Impact & Metrics
+## Impact & Metrics
 
 | Metric | Result | How measured |
 |--------|--------|--------------|
@@ -70,7 +70,7 @@ flowchart LR
 
 ---
 
-## 🛣️ What I'd Build Next
+## What I'd Build Next
 
 | Priority | Feature | Why this, why now |
 |----------|---------|-------------------|
@@ -84,21 +84,21 @@ flowchart LR
 
 ---
 
-## 👤 My Role
+## My Role
 
 **Solo project** for ISBA 2421 (GenAI Applications) at Santa Clara University.
 
 **What I personally owned (everything):**
-- ✅ Product framing — picked the user (PhD students), the job (synthesize, don't just summarize), and the surface (6 tabs)
-- ✅ Designed the 8-agent pipeline and the parallelization plan
-- ✅ Built the FastAPI backend, the LangGraph pipeline, FAISS indexing
-- ✅ Built the React frontend (single-file `LitLens.jsx`)
-- ✅ Cost benchmarking and the gpt-4o-mini decision
-- ✅ This README
+- Product framing — picked the user (PhD students), the job (synthesize, don't just summarize), and the surface (6 tabs)
+- Designed the 8-agent pipeline and the parallelization plan
+- Built the FastAPI backend, the LangGraph pipeline, FAISS indexing
+- Built the React frontend (single-file `LitLens.jsx`)
+- Cost benchmarking and the gpt-4o-mini decision
+- This README
 
 ---
 
-## 🧠 What I Learned
+## What I Learned
 
 - **Cost is a UX feature.** When a run costs $0.07, users hesitate. When it costs $0.01, they iterate. The single biggest UX improvement was a model swap, not a UI change.
 - **Name tabs by job, not by agent.** Agent-named tabs ("Agent 5 output") felt like a debugger; job-named tabs ("Contradictions") felt like a product.
@@ -107,7 +107,7 @@ flowchart LR
 
 ---
 
-## 🔧 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -121,7 +121,7 @@ flowchart LR
 
 ---
 
-## 🏃 Quick Start
+## Quick Start
 
 ```bash
 git clone https://github.com/sjagannathan17/LitLens.git
@@ -142,28 +142,28 @@ Open `http://localhost:5173`, drop in 2+ PDFs, enter a research question, hit **
 
 ---
 
-## 📁 Repo Structure
+## Repo Structure
 
 ```
 LitLens/
 ├── backend/
-│   ├── api.py            # FastAPI: /api/analyze, /api/chat
-│   ├── pipeline.py       # 8 LangGraph agents + FAISS + runner
-│   └── requirements.txt
+│ ├── api.py # FastAPI: /api/analyze, /api/chat
+│ ├── pipeline.py # 8 LangGraph agents + FAISS + runner
+│ └── requirements.txt
 ├── frontend/
-│   ├── src/
-│   │   ├── LitLens.jsx   # Complete React UI (single file)
-│   │   └── main.jsx
-│   ├── index.html
-│   └── package.json
+│ ├── src/
+│ │ ├── LitLens.jsx # Complete React UI (single file)
+│ │ └── main.jsx
+│ ├── index.html
+│ └── package.json
 ├── assets/
-│   └── litlens_architecture.png
-└── .env                  # OPENAI_API_KEY (not committed)
+│ └── litlens_architecture.png
+└── .env # OPENAI_API_KEY (not committed)
 ```
 
 ---
 
-## 📄 Disclaimer
+## Disclaimer
 
 LitLens is a **research aid**, not a replacement for human reading. Always verify claims, citations, and contradictions independently before academic use.
 
