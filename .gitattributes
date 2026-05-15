@@ -1,0 +1,4 @@
+# Mark JS bundle/lock files as vendored so language stats reflect the real codebase
+frontend/package-lock.json linguist-vendored
+frontend/node_modules/** linguist-vendored
+frontend/dist/** linguist-generated
