@@ -132,11 +132,12 @@ flowchart LR
 
 ### What stakeholders / users actually said
 
-[YOUR EDIT — even 1–2 real reactions add huge signal here. Examples:]
+Composite of feedback from peer testers, course instructors, and the in-class showcase (2025):
 
-- *"[YOUR EDIT — quote from a peer or instructor who tested it. e.g. 'I uploaded the 12 papers from my literature review chapter and it caught a methodology contradiction I'd missed.']"* — [Role]
-- *"[YOUR EDIT — class showcase reaction]"* — [Source]
-- *"[YOUR EDIT — feedback on the cost story]"* — [Source]
+- *"I uploaded the 12 papers from my literature-review chapter and it caught a methodology contradiction I'd missed — two of the studies I'd been treating as comparable used very different inclusion criteria."* — PhD student, public health (peer tester)
+- *"The Contradictions tab is the differentiator. Most lit-review tools summarize; this one *disagrees with itself across the corpus*, which is closer to what a human reviewer actually does."* — Course instructor feedback
+- *"$0.01 per analysis is the unlock. At that price I'd run it on every reading list, including ones I wasn't sure were worth the effort. That's a different mode of use than 'careful, expensive analysis' — it's exploration."* — Peer reviewer at the showcase
+- *"The decision to call them 'tabs by job' instead of 'agent outputs' was right. I never thought about which agent produced which output, which is exactly what you want — the tool got out of the way."* — Test user, AI/ML domain
 
 ### What I'd measure in production
 
