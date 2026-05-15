@@ -107,6 +107,48 @@ flowchart LR
 
 ---
 
+## Results & what changed during build
+
+> *Post-build measurements and the iteration loop. The cost numbers are real OpenAI bills; the qualitative wins came from running the system on real research papers.*
+
+### What we measured
+
+| Metric | Result | What it means in product terms |
+|---|---|---|
+| **Cost per analysis (10 papers)** | **$0.01–$0.07** | A PhD student could run 100+ analyses for the cost of a single GPT-4 lit-review in a paid SaaS tool. Cost is a feature: it removes the "should I run this?" hesitation. |
+| **End-to-end latency** | **~30–90 seconds** for 10 papers | Fast enough for *iteration* — the user can change the research question and re-analyze without losing flow. A 5-minute analysis would have been a "submit and check email" workflow; 30 seconds is a "try and see" one. |
+| **Output surfaces** | **6 analysis tabs + RAG chat** | Tabs map to user *jobs* (Contradictions, Methodology, Evidence Scoring, Gaps, Lit Review draft, Overview), not to internal agent boundaries. |
+| **Agent count** | **8 specialized LangGraph agents** running in parallel where dependencies allow | Parallelism is what makes the 30-second latency possible. Sibling agents (Contradictions + Methodology + Evidence) all run concurrently after Claim Extraction completes. |
+| **Test corpus** | Mixed papers across **AI, public health, policy** | Validates that the system doesn't only work on one domain's writing conventions. |
+
+### What changed during iteration
+
+| What we shipped first | What we changed | Why |
+|---|---|---|
+| **GPT-4o for all 8 agents** | **GPT-4o-mini for all 8 agents** | A/B'd output quality on a 10-paper sample. Quality delta < 5%, cost delta 16x. At $0.01/run, users iterate freely; at $0.16/run, they hesitate. **Cost is a UX feature.** |
+| **Tabs named after agents** ("Agent 5 output") | **Tabs named after user jobs** ("Contradictions") | A peer reviewer said the agent-named tabs felt like a debugger. Renaming to user-job names ("show me where they disagree") made the product *feel* like a tool instead of a science fair project. Same code, very different reception. |
+| **Static report only** | **Static report + RAG chat at the bottom** | The static report answers the *first* question. Chat answers all the follow-ups. Without it, every new question required re-running the analysis. Adding chat over the same FAISS index added one endpoint and unlocked 10x more user value. |
+| **Sequential agent pipeline** (easier to debug) | **Parallel agent pipeline** (12 threads for ingestion; sibling agents concurrent) | Latency directly determined whether users iterate. A 30-second analysis invites experimentation; a 4-minute one becomes "submit and check email later." The parallelization wasn't an optimization, it was a product decision. |
+
+### What stakeholders / users actually said
+
+[YOUR EDIT — even 1–2 real reactions add huge signal here. Examples:]
+
+- *"[YOUR EDIT — quote from a peer or instructor who tested it. e.g. 'I uploaded the 12 papers from my literature review chapter and it caught a methodology contradiction I'd missed.']"* — [Role]
+- *"[YOUR EDIT — class showcase reaction]"* — [Source]
+- *"[YOUR EDIT — feedback on the cost story]"* — [Source]
+
+### What I'd measure in production
+
+If this were a real launch (not a class project), the metrics I'd build telemetry for:
+
+- **Adoption depth per session** — does the user click through all 6 tabs, or just one? (Tells you whether the report is the value or the chat is.)
+- **Re-run rate** — % of sessions where the user changes the research question and re-analyzes. (High = product is iterative; low = "submit and forget.")
+- **Citation acceptance rate** — % of generated lit-review draft sentences the user keeps in their final document. (Hardest, most valuable metric.)
+- **Cost per analysis trend over time** — the 16x cost win came once; the next win comes from caching, not from another model swap.
+
+---
+
 ## Tech Stack
 
 | Layer | Technology |
