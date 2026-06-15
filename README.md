@@ -167,8 +167,8 @@ If this were a real launch (not a class project), the metrics I'd build telemetr
 ## Quick Start
 
 ```bash
-git clone https://github.com/sjagannathan17/LitLens.git
-cd LitLens
+git clone https://github.com/sjagannathan17/litlens.git
+cd litlens
 
 pip install -r backend/requirements.txt
 cd frontend && npm install && cd ..
