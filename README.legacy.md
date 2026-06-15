@@ -48,8 +48,8 @@ Agent 8: Report Generator
 ### Installation
 
 ```bash
-git clone https://github.com/sjagannathan17/LitLens.git
-cd LitLens
+git clone https://github.com/sjagannathan17/litlens.git
+cd litlens
 
 # Backend
 pip install -r backend/requirements.txt
